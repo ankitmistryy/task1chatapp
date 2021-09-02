@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:task1chatapp/pages/chatroom.dart';
-
 import 'package:task1chatapp/widgets/widgets.dart';
 
 class Search extends StatefulWidget {
