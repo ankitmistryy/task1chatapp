@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:task1chatapp/helper/authenticat.dart';
 import 'package:task1chatapp/pages/chatroom.dart';
+import 'package:task1chatapp/services/auth.dart';
 import 'package:task1chatapp/widgets/widgets.dart';
 
 class Search extends StatefulWidget {
@@ -14,7 +16,7 @@ class _SearchState extends State<Search> with WidgetsBindingObserver {
   Map<String, dynamic>? userMap;
   bool isLoading = false;
   final TextEditingController _search = TextEditingController();
- //  final AuthMethods authMethods = new AuthMethods();
+  final AuthMethods authMethods = new AuthMethods();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -79,19 +81,19 @@ class _SearchState extends State<Search> with WidgetsBindingObserver {
     return Scaffold(
       appBar: AppBar(
         title: Text("Search Screen"),
-        // actions: [
-        //   GestureDetector(
-        //     onTap: () {
-        //       authMethods.signOut();
-        //       Navigator.pushReplacement(context,
-        //           MaterialPageRoute(builder: (context) => Authenticate()));
-        //     },
-        //     child: Container(
-        //       padding: EdgeInsets.symmetric(horizontal: 10),
-        //       child: Icon(Icons.exit_to_app),
-        //     ),
-        //   )
-        // ],
+        actions: [
+          GestureDetector(
+            onTap: () {
+              authMethods.signOut();
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => Authenticate()));
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Icon(Icons.exit_to_app),
+            ),
+          )
+        ],
       ),
       body: isLoading
           ? Center(
